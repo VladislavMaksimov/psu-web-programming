@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+div, body, p {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background: #F0F3FF;
+}
+
+.page {
+  width: 70%;
+  height: auto;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 10px #888888;
+          box-shadow: 0 0 10px #888888;
+  background: #FFFFFF;
+  margin-top: 2%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 2%;
+}
+
+.page h1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -webkit-column-gap: 5%;
+          column-gap: 5%;
+  grid-row-gap: 2vw;
+  margin-top: 3%;
+}
+
+.card-info {
+  padding: 2%;
+  border: 1px solid black;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 10px #888888;
+          box-shadow: 0 0 10px #888888;
+  overflow: hidden;
+}
+
+.card-info .logo {
+  height: 10vw;
+  width: 100%;
+  background: url("https://picsum.photos/id/232/300/200");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-info h2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 4%;
+}
+
+.card-info .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: 4%;
+}
+
+.card-info .actions .description {
+  background: #b3c0f0;
+  min-width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2%;
+  border-radius: 5px;
+  cursor: pointer;
+  float: left;
+}
+
+.card-info .actions .delete {
+  background: #b3c0f0;
+  min-width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2%;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+}
+
+.card-add {
+  padding: 2%;
+  border: 1px solid black;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 10px #888888;
+          box-shadow: 0 0 10px #888888;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #000000;
+  cursor: pointer;
+}
+
+.card-add i {
+  font-size: 7em;
+  color: #FFFFFF;
+}
+/*# sourceMappingURL=style.css.map */
