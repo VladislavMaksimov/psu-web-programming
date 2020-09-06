@@ -1,12 +1,8 @@
-function getCards() {
-    const N = 10;
-    const cards = Array(N).fill().map((_, i) => ({
-        "id": i,
-        "name": 'Lorem ipsum',
-        "description": 'Lorem ipsum',
-        "image": `https://picsum.photos/id/${900 + i}/300/200`
-    }));
-    return cards;
+function getCards(container) {
+    axios.get('http://localhost:3001/')
+        .then((response) => {
+            setCards(container, response.data);
+        })
 }
 
 function setCards(container, cards) {
@@ -25,9 +21,10 @@ function setCards(container, cards) {
         const actions = document.createElement('div');
         actions.classList.add('actions');
 
-        const description = document.createElement('div');
+        const description = document.createElement('a');
         description.classList.add('description');
         description.innerText = 'Description';
+        description.href = `/card/${card.id}`
 
         const deleteDiv = document.createElement('div');
         deleteDiv.classList.add('delete');
@@ -51,6 +48,5 @@ function setCards(container, cards) {
 
 window.addEventListener('load', function() {
     const container = document.getElementsByClassName('container')[0];
-    const cards = getCards();
-    setCards(container, cards);
+    getCards(container);    
 })
