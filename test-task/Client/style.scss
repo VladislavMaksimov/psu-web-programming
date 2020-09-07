@@ -122,3 +122,61 @@ body {
         color: #FFFFFF;
     }
 }
+
+@media screen and (max-width: 1199px) {
+    .page {
+        width: 75%;
+    }
+
+    .card-info {
+        .logo {
+            height: 11vw;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .page {
+        width: 80%
+    }
+
+    .card-info {
+        .logo {
+            height: 13vw;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card-info {
+        .logo {
+            height: 20vw;
+        }
+    }
+
+    .card-add {
+        padding-top: 5vw;
+        padding-bottom: 5vw;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .container {
+        grid-template-columns: auto;
+    }
+
+    .card-info {
+        .logo {
+            height: 40vw;
+        }
+    }
+
+    .card-add {
+        padding-top: 10vw;
+        padding-bottom: 10vw;
+    }
+}
