@@ -1,6 +1,7 @@
 function getCards(container) {
-    axios.get('http://localhost:3001/')
+    axios.get('http://localhost:3002/')
         .then((response) => {
+            console.log(response)
             setCards(container, response.data);
         })
 }
