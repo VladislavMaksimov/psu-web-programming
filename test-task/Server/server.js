@@ -5,8 +5,7 @@ const client = new Client({
     host: 'localhost',
     user: 'postgres',
     password: '1234',
-    database: 'web-test-db',
-    port: '57443'
+    database: 'web-test-db'
 });
 
 const N = 10;
@@ -29,6 +28,6 @@ http.createServer((request, response) => {
 
 client.connect();
 client
-  .query('SELECT NOW() as now')
-  .then(res => console.log(res.rows[0]))
-  .catch(e => console.error(e.stack))
+  .query('SELECT NOW()')
+  .then(res => {console.log(res.rows[0]); client.end;})
+  .catch(e => {console.error(e.stack); client.end();})
