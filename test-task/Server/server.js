@@ -22,6 +22,21 @@ const pgGet = (response) => {
         .then(() => client.end());
 }
 
+const pgInsert = (response) => {
+    const client = getClient();
+
+    client.connect();
+
+    const text = 'INSERT INTO test_table VALUES (DEFAULT, $1, $2, $3 || 900 + (SELECT max(id) from test_table) || $4)';
+    const values = ['Lorem Ipsum', 'Ipsum lorem', 'https://picsum.photos/id/', '/300/200'];
+
+    client
+        .query(text, values)
+        .catch(e => console.error(e.stack))
+        .then(() => client.end())
+        .then(() => response.end());
+}
+
 const pgDelete = (url, response) => {
     const client = getClient();
     const urlArray = url.split('/');
@@ -55,8 +70,8 @@ http.createServer((request, response) => {
     }
 
     if (request.method == 'POST') {
-        if (request.url == '/\/id/') {
-            
+        if (request.url == '/add/random') {
+            pgInsert(response);
         }
     }
 

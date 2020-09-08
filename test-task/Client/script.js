@@ -4,7 +4,14 @@ function clear() {
         container.removeChild(container.firstChild);
 }
 
-function renderAddForm() {
+function addRandomCard() {
+    axios.post('http://localhost:3002/add/random')
+    .then(() => {
+        clear();
+        const container = document.getElementsByClassName('container')[0];
+        getCards(container);
+    })
+        
 }
 
 function getCards(container) {
@@ -58,7 +65,7 @@ function setCards(container, cards) {
 
     const addCard = document.createElement('div');
     addCard.classList.add('card-add');
-    addCard.addEventListener('click', renderAddForm());
+    addCard.addEventListener('click', () => addRandomCard());
 
     const plus = document.createElement('i');
     plus.classList.add('fa', 'fa-plus-circle');
