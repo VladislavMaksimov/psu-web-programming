@@ -1,10 +1,15 @@
 function getCards(container) {
     axios.get('http://localhost:3002/')
         .then((response) => {
-            console.log(response)
             setCards(container, response.data);
         })
 }
+
+// Удаление карточки
+function deleteCard(id) {
+    axios.delete(`http://localhost:3002/id/${id}`);
+}
+
 
 function setCards(container, cards) {
     Object.values(cards).map(card => {
@@ -30,6 +35,7 @@ function setCards(container, cards) {
         const deleteDiv = document.createElement('div');
         deleteDiv.classList.add('delete');
         deleteDiv.innerText = 'Delete';
+        deleteDiv.addEventListener('click', deleteCard.bind(this, card.id));
 
         actions.append(description, deleteDiv);
         cardInfo.append(logo, name, actions);
@@ -49,5 +55,5 @@ function setCards(container, cards) {
 
 window.addEventListener('load', function() {
     const container = document.getElementsByClassName('container')[0];
-    getCards(container);    
+    getCards(container);  
 })
