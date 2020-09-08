@@ -1,0 +1,37 @@
+@mixin center-margin {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@mixin center-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-alter {
+    margin-top: 5%;
+    @include center-flex();
+    @include center-margin();
+    padding: 2%;
+    width: 25%;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #888888;
+}
+
+.info-container {
+    display: grid;
+    grid-row-gap: 0.5vw;
+    width: 100%;
+    margin-top: 7%;
+}
+
+.send-button {
+    @include center-flex();
+    cursor: pointer;
+    padding: 2%;
+    margin-top: 7%;
+    border: 1px solid black;
+    border-radius: 5px;
+}

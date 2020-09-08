@@ -4,6 +4,90 @@ function clear() {
         container.removeChild(container.firstChild);
 }
 
+function clearPage() {
+    const page = document.getElementsByClassName('page')[0];
+    while (page.firstChild)
+        page.removeChild(page.firstChild);
+}
+
+function updateCard(id) {
+    const nameInput = document.getElementsByClassName('input')[0];
+    const descInput = document.getElementsByClassName('input')[1];
+
+console.log(nameInput.value)
+
+    const name = nameInput.value;
+    const desc = descInput.value;
+
+    axios({
+        method: 'put',
+        url: `http://localhost:3002/id/${id}`,
+        data: { name, desc }
+    }).then(() => clearPage())
+      .then(() => returnPage());
+}
+
+function renderNewPage(cardData) {
+    const cardForm = document.createElement('form');
+    cardForm.classList.add("card-form")
+
+    const cardImage = new Image();
+    cardImage.src = new URL(cardData.image);
+
+    const infoContainer = document.createElement('div');
+    infoContainer.className = 'info-container';
+
+    const nameLabel = document.createElement('b');
+    nameLabel.innerText = 'Name: ';
+    
+    const nameInput = document.createElement('input')
+    nameInput.value = cardData.name;
+    nameInput.className = 'input';
+
+    const descLabel = document.createElement('b');
+    descLabel.innerText = 'Description: ';
+
+    const descInput = document.createElement('input');
+    descInput.value = cardData.description;
+    descInput.className = 'input';
+
+    infoContainer.append(nameLabel, nameInput, descLabel, descInput);
+
+    const sendButton = document.createElement('div');
+    sendButton.className = 'send-button';
+    sendButton.innerText = 'Update';
+    sendButton.addEventListener('click', updateCard.bind(this, cardData.id));
+
+    const page = document.getElementsByClassName('page')[0];
+    cardForm.append(cardImage, infoContainer, sendButton);
+    page.appendChild(cardForm);
+    page.className = 'page-alter';
+}
+
+function getCardData(id) {
+    axios.get(`http://localhost:3002/id/${id}`)
+        .then((response) => renderNewPage(response.data))
+}
+
+function returnPage() {
+    const page = document.getElementsByClassName('page-alter')[0];
+    page.className = 'page';
+
+    let header = document.createElement('h1');
+    header.innerText = 'Lorem cardsum';
+
+    let container = document.createElement('div');
+    container.classList.add('container');
+
+    page.append(header, container);
+    getCards(container);
+}
+
+function renderDescription(id) {
+    clearPage();
+    getCardData(id);
+}
+
 function addRandomCard() {
     axios.post('http://localhost:3002/add/random')
     .then(() => {
@@ -50,7 +134,7 @@ function setCards(container, cards) {
         const description = document.createElement('a');
         description.classList.add('description');
         description.innerText = 'Description';
-        description.href = `/card/${card.id}`
+        //description.addEventListener('click', renderDescription.bind(this, card.id));
 
         const deleteDiv = document.createElement('div');
         deleteDiv.classList.add('delete');
