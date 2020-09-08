@@ -22,7 +22,7 @@ const pgGet = (response) => {
         .then(() => client.end());
 }
 
-const pgDelete = (url) => {
+const pgDelete = (url, response) => {
     const client = getClient();
     const urlArray = url.split('/');
     const id = urlArray[urlArray.length - 1]
@@ -35,7 +35,8 @@ const pgDelete = (url) => {
     client
         .query(text, values)
         .catch(e => console.error(e.stack))
-        .then(() => client.end());
+        .then(() => client.end())
+        .then(() => response.end());
 }
 
 http.createServer((request, response) => {
@@ -61,7 +62,7 @@ http.createServer((request, response) => {
 
     if (request.method == 'DELETE') {
         if (request.url.match('/id/') !== null) {
-            pgDelete(request.url)
+            pgDelete(request.url, response)
         }
     }
 }).listen(3002);

@@ -1,3 +1,12 @@
+function clear() {
+    const container = document.getElementsByClassName('container')[0];
+    while (container.firstChild)
+        container.removeChild(container.firstChild);
+}
+
+function renderAddForm() {
+}
+
 function getCards(container) {
     axios.get('http://localhost:3002/')
         .then((response) => {
@@ -7,9 +16,13 @@ function getCards(container) {
 
 // Удаление карточки
 function deleteCard(id) {
-    axios.delete(`http://localhost:3002/id/${id}`);
+    axios.delete(`http://localhost:3002/id/${id}`)
+        .then(() => {
+            clear();
+            const container = document.getElementsByClassName('container')[0];
+            getCards(container);
+        })
 }
-
 
 function setCards(container, cards) {
     Object.values(cards).map(card => {
@@ -45,6 +58,7 @@ function setCards(container, cards) {
 
     const addCard = document.createElement('div');
     addCard.classList.add('card-add');
+    addCard.addEventListener('click', renderAddForm());
 
     const plus = document.createElement('i');
     plus.classList.add('fa', 'fa-plus-circle');
